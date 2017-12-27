@@ -3,7 +3,20 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
+  - Wall
+  - Item
+  - PlayerBullet
+  - EnemyBullet
+  - GameOver
+  - LevelAccomplished
+  - UI
+  - FallDownCatch
+  - Checkpoint
+  - Lifes
+  - EnemyNoKill
+  - LevelGen
   layers:
   - Default
   - TransparentFX
@@ -13,12 +26,12 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Enemy
+  - Items
+  - LevelBoundries
+  - Ground
+  - PlayerBullet
   - 
   - 
   - 
