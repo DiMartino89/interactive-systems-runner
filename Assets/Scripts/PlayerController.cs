@@ -38,8 +38,6 @@ public class PlayerController : MonoBehaviour
         {
             changeState(IDLE);
         }
-
-        // Debug.Log("current state: " + _currentAnimationState);
     }
 
     void changeState(int state)
@@ -47,27 +45,10 @@ public class PlayerController : MonoBehaviour
         if (_currentAnimationState == state)
             return;
 
-        if (_currentAnimationState == WALK_RIGHT)
-        {
-            head.SetInteger("State", WALK_RIGHT);
-            chest.SetInteger("State", WALK_RIGHT);
-            legs.SetInteger("State", WALK_RIGHT);
-        }
-
-        if (_currentAnimationState == WALK_LEFT)
-        {
-            head.SetInteger("State", WALK_LEFT);
-            chest.SetInteger("State", WALK_LEFT);
-            legs.SetInteger("State", WALK_LEFT);
-        }
-
-        if (_currentAnimationState == IDLE)
-        {
-            head.SetInteger("State", IDLE);
-            chest.SetInteger("State", IDLE);
-            chest.SetInteger("State", IDLE);
-        }
-
+        head.SetInteger("State", state);
+        chest.SetInteger("State", state);
+        legs.SetInteger("State", state);
+    
         _currentAnimationState = state;
     }
 }
