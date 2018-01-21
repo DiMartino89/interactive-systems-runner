@@ -1,11 +1,22 @@
 fileFormatVersion: 2
 guid: d8e967db42b72d14ca456d7d0ce4e4af
-timeCreated: 1514307901
+timeCreated: 1516321802
 licenseType: Free
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - difficultyLabel: {fileID: 114544777693698186, guid: 3616f2b09857e3549bab79b8e554eb91,
+      type: 2}
+  - levelLengthLabel: {fileID: 114091214147049810, guid: a8dad1d4dab4af34fb4dcb00e22dc0e9,
+      type: 2}
+  - difficultySlider: {fileID: 114561263616615150, guid: 0ab6aa51d8937e8419751e26ac3c6f5a,
+      type: 2}
+  - levelLengthSlider: {fileID: 114989045335024588, guid: 02c0729c73419bd47a2476a5371f01b5,
+      type: 2}
+  - soundToggle: {fileID: 114400422386946500, guid: 75c9bd65d76c79047b7a47c5ca3e4200,
+      type: 2}
+  - levelGen: {fileID: 1761277683153994, guid: 937791ae7d4dab34daaf266af0766bcd, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

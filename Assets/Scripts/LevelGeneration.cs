@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class LevelGeneration : MonoBehaviour {
 
+	public GameObject player;
+	public GameObject standardLook;
+	GameObject newLook;
+	
 	public GameObject ground;
 	public GameObject bridge;
 	public GameObject gap;
@@ -37,6 +41,29 @@ public class LevelGeneration : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
+		//Instantiate PlayerLook
+		try{
+			newLook = Resources.Load("editedAppearance/editedLook") as GameObject;
+		}            
+		catch(UnityException e){            
+			Debug.Log(e);
+		}
+		if(newLook != null) {
+			GameObject eLook = Instantiate(newLook, new Vector2(0,1.3f), Quaternion.identity) as GameObject;
+			eLook.transform.SetParent(player.transform);
+			Animator head = eLook.GetComponent<Animator>();
+			Animator body = eLook.transform.Find("UpperBody").GetComponent<Animator>();
+			Animator legs = eLook.transform.Find("UpperBody").transform.Find("LowerBody").GetComponent<Animator>();
+			player.GetComponent<PlayerController>().assignAnimators(head, body, legs);
+		} else {
+			GameObject sLook = Instantiate(standardLook, new Vector2(0,1.3f), Quaternion.identity) as GameObject;
+			sLook.transform.SetParent(player.transform);
+			Animator head = sLook.GetComponent<Animator>();
+			Animator body = sLook.transform.Find("UpperBody").GetComponent<Animator>();
+			Animator legs = sLook.transform.Find("UpperBody").transform.Find("LowerBody").GetComponent<Animator>();
+			player.GetComponent<PlayerController>().assignAnimators(head, body, legs);
+		}
+		
 		Instantiate(ground, new Vector2(0,0), Quaternion.identity);
 		for(int i = -5; i < 1; i++) {
 			Instantiate(fallDownCatch, new Vector2(i, blockHeight - 10), Quaternion.identity);

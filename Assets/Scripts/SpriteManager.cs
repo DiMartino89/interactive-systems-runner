@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEditor;
 using System.IO;
 using System.Collections;
 using System.Collections.Generic;
@@ -150,44 +151,19 @@ public class SpriteManager : MonoBehaviour
                 legs.GetComponent<Animator>().runtimeAnimatorController = animators[i];
             }
         }
-    }
-
-    /** Tryout to merge sprites into one */
-    public void createPlayer()
-    {      
-        int headWidth, headHeight;
-        int chestWidth, chestHeight;
-        int legsWidth, legsHeight;
-
-        Sprite head_sprite = headSprites[headIndex];
-        Sprite chest_sprite = upperBodySprites[bodyIndex];
-        Sprite leg_sprite = lowerBodySprites[legsIndex];
-        
-        headWidth = head_sprite.texture.width;
-        headHeight = head_sprite.texture.height;
-        
-        chestWidth = chest_sprite.texture.width;
-        chestHeight = chest_sprite.texture.height;
-        
-        legsWidth = leg_sprite.texture.width;
-        legsHeight = leg_sprite.texture.height;
-        
-        Color[] headPixels = head_sprite.texture.GetPixels();
-        Color[] chestPixels = chest_sprite.texture.GetPixels();
-        Color[] legPixels = leg_sprite.texture.GetPixels();
-        
-        
-        for (int x = 0; x < chestWidth; x++)
-        {
-            for (int y = 0; y < chestHeight; y++)
-            {
-            }
-        }
-        for (int x = 0; x < legsWidth; x++)
-        {
-            for (int y = 0; y < legsHeight; y++)
-            {
-            }
-        }
+		
+		//Components for PlayerController
+		//whole Look/Head
+		Transform pLook = player.transform.Find("editedLook");
+		Object prefab1 = EditorUtility.CreateEmptyPrefab("Assets/Resources/editedAppearance/" + pLook.gameObject.name + ".prefab");
+		PrefabUtility.ReplacePrefab(pLook.gameObject, prefab1, ReplacePrefabOptions.ConnectToPrefab);
+		//UpperBody
+		Transform upperBody = pLook.Find("UpperBody");
+		Object prefab2 = EditorUtility.CreateEmptyPrefab("Assets/Resources/editedAppearance/" + upperBody.gameObject.name + ".prefab");
+		PrefabUtility.ReplacePrefab(upperBody.gameObject, prefab2, ReplacePrefabOptions.ConnectToPrefab);
+		//LowerBody
+		Transform lowerBody = pLook.Find("UpperBody").transform.Find("LowerBody");
+		Object prefab3 = EditorUtility.CreateEmptyPrefab("Assets/Resources/editedAppearance/" + lowerBody.gameObject.name + ".prefab");
+		PrefabUtility.ReplacePrefab(lowerBody.gameObject, prefab3, ReplacePrefabOptions.ConnectToPrefab);
     }
 }

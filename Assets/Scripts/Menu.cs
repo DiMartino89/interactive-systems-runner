@@ -10,11 +10,12 @@ public Text levelLengthLabel;
 public Slider difficultySlider;
 public Slider levelLengthSlider;
 public Toggle soundToggle;
+public bool soundOn = true;
 
 public GameObject levelGen;
 	
 	void Start() {
-		
+		//soundToggle = soundToggle.GetComponent<Toggle>();
 	}
 	
 	// Within Main-menu
@@ -50,14 +51,19 @@ public GameObject levelGen;
 		levelGen.GetComponent<LevelGeneration>().changeDifficulty(value);
 	}
 	
+	public void switchSound() 
+    {
+		if(!AudioListener.pause) {
+			AudioListener.pause = true;
+		} else {
+			AudioListener.pause = false;
+		}
+    }
+	
 	public void selectLevelLength() {
-		int value =  (int)levelLengthSlider.value;
+		int value = (int)levelLengthSlider.value;
 		levelLengthLabel.text = "Level-Length: " + value;
 		levelGen.GetComponent<LevelGeneration>().changeLevelLength(value);
-	}
-	
-	public void switchSound() {
-		//.isOn
 	}
 	
 	public void backToMenu(string sceneName) {

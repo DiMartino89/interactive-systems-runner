@@ -17,6 +17,7 @@ public class Player : MonoBehaviour {
 	public GameObject bullet;
 	public GameObject winGame;
 	public GameObject gameOver;
+	public Button backToMenu;
 	public Text currLifes;
 	public Text currAmmo;
 	public Text currInvulnerability;
@@ -28,7 +29,7 @@ public class Player : MonoBehaviour {
 	private bool isDead;
 	private bool isFinished;
 	private bool isTriggered = false; 
-	private SpriteRenderer rend;
+	private SpriteRenderer rend, rendHead, rendBody, rendLegs;
 	private Rigidbody2D player;
 	private static int playerStat;
 	private float timeToRespawn;
@@ -40,10 +41,17 @@ public class Player : MonoBehaviour {
 	GameObject clone;
 	Behaviour halo;
 	
+	void Awake() {
+		DontDestroyOnLoad(this);
+	}
+	
 	// Use this for initialization
 	void Start () {
 		player = GetComponent<Rigidbody2D>();
 		rend = GetComponent<SpriteRenderer>();
+		rendHead = transform.Find("editedLook(Clone)").GetComponent<SpriteRenderer>();
+		rendBody = transform.Find("editedLook(Clone)").GetChild(0).GetComponent<SpriteRenderer>();
+		rendLegs = transform.Find("editedLook(Clone)").GetChild(0).transform.GetChild(0).GetComponent<SpriteRenderer>();
 		halo =(Behaviour)GetComponent("Halo");
 		lastCheckpoint = transform.position;
 		isDead = false;
@@ -56,6 +64,7 @@ public class Player : MonoBehaviour {
 		currInvulnerability.text = "Inv: " + Math.Round(invulnerability, 1) + "s";
 		currJumping.text = "Jump: " + Math.Round(timeReinforcedJump, 1);
 		currDifficulty.text = "Diff: " + LevelGeneration.difficulty;
+		GetComponent<PlayerController>().changeState(0);
 	}
 	
 	// Update is called once per frame
@@ -63,10 +72,30 @@ public class Player : MonoBehaviour {
 		if(isDead == false && isFinished == false) {
 			if(Input.GetKey(KeyCode.RightArrow) || (Input.GetKey(KeyCode.D))) {
 				transform.Translate(Vector3.right * speed * Time.fixedDeltaTime);
+				GetComponent<PlayerController>().changeState(1);
+				if(GameObject.Find("editedLook(Clone)").transform.localScale.x < 0) {
+					Vector3 scale = GameObject.Find("editedLook(Clone)").transform.localScale;
+					scale.x *= -1;
+					GameObject.Find("editedLook(Clone)").transform.localScale = scale;
+				}
+			}
+			
+			if(Input.GetKeyUp(KeyCode.RightArrow) || (Input.GetKeyUp(KeyCode.D))) {
+				GetComponent<PlayerController>().changeState(0);
 			}
 			
 			if(Input.GetKey(KeyCode.LeftArrow) || (Input.GetKey(KeyCode.A))) {
 				transform.Translate(Vector3.left * speed * Time.fixedDeltaTime);
+				GetComponent<PlayerController>().changeState(2);
+				if(GameObject.Find("editedLook(Clone)").transform.localScale.x > 0) {
+					Vector3 scale = GameObject.Find("editedLook(Clone)").transform.localScale;
+					scale.x *= -1;
+					GameObject.Find("editedLook(Clone)").transform.localScale = scale;
+				}
+			}
+			
+			if(Input.GetKey(KeyCode.LeftArrow) || (Input.GetKey(KeyCode.A))) {
+				GetComponent<PlayerController>().changeState(0);
 			}
 			
 			if(Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) {
@@ -117,6 +146,9 @@ public class Player : MonoBehaviour {
 		if(isDead == true && lifes > 0 && timeToRespawn < Time.time) {
 			transform.position = lastCheckpoint;
 			rend.enabled = true;
+			rendHead.enabled = true;
+			rendBody.enabled = true;
+			rendLegs.enabled = true;
 			Physics2D.IgnoreLayerCollision(8,9, false);
 			isDead = false;
 			isTriggered = false;
@@ -125,6 +157,7 @@ public class Player : MonoBehaviour {
 		if(lifes == 0) {	
 			Physics2D.IgnoreLayerCollision(8,9, true);
 			gameOver.SetActive(true);
+			backToMenu.gameObject.SetActive(true);
 		}
 		
 		currLifes.text = "♥ " + lifes;
@@ -152,6 +185,9 @@ public class Player : MonoBehaviour {
 				isDead = true;
 				col.gameObject.SetActive(false);
 				rend.enabled = false;
+				rendHead.enabled = false;
+				rendBody.enabled = false;
+				rendLegs.enabled = false;
 				isTriggered = true;
 				grounded = false;
 			}
@@ -171,6 +207,9 @@ public class Player : MonoBehaviour {
 				}
 				isDead = true;
 				rend.enabled = false;
+				rendHead.enabled = false;
+				rendBody.enabled = false;
+				rendLegs.enabled = false;
 				isTriggered = true;
 				grounded = false;
 			}
