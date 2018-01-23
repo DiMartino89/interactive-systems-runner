@@ -89,6 +89,11 @@ public class EnemyRolling : MonoBehaviour
 				}
 			}
 		}
-
+	}
+	
+	void OnTriggerEnter2D(Collider2D col){
+		if (col.tag == "PlayerBullet") {
+			gameObject.SetActive(false);
+		}
 	}
 }

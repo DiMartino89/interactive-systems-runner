@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: c7e6b436607fe434697ea9cc29329290
-timeCreated: 1516318617
+guid: f07663f0b60de824880fda947d1ad510
+timeCreated: 1516724896
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -10,6 +10,14 @@ TextureImporter:
     21300006: greenBody_spritesheet_3
     21300008: greenBody_spritesheet_4
     21300010: greenBody_spritesheet_5
+    21300012: greenBody_spritesheet_6
+    21300014: greenBody_spritesheet_7
+    21300016: greenBody_spritesheet_8
+    21300018: greenBody_spritesheet_9
+    21300020: greenBody_spritesheet_10
+    21300022: greenBody_spritesheet_11
+    21300024: greenBody_spritesheet_12
+    21300026: greenBody_spritesheet_13
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -87,9 +95,9 @@ TextureImporter:
       name: greenBody_spritesheet_0
       rect:
         serializedVersion: 2
-        x: 10
-        y: 8
-        width: 87
+        x: 377
+        y: 438
+        width: 101
         height: 107
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -101,10 +109,10 @@ TextureImporter:
       name: greenBody_spritesheet_1
       rect:
         serializedVersion: 2
-        x: 131
-        y: 5
-        width: 103
-        height: 112
+        x: 506
+        y: 438
+        width: 101
+        height: 107
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,10 +123,10 @@ TextureImporter:
       name: greenBody_spritesheet_2
       rect:
         serializedVersion: 2
-        x: 267
-        y: 6
-        width: 120
-        height: 112
+        x: 52
+        y: 261
+        width: 116
+        height: 107
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -129,10 +137,10 @@ TextureImporter:
       name: greenBody_spritesheet_3
       rect:
         serializedVersion: 2
-        x: 426
-        y: 3
-        width: 103
-        height: 111
+        x: 212
+        y: 261
+        width: 112
+        height: 107
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,10 +151,10 @@ TextureImporter:
       name: greenBody_spritesheet_4
       rect:
         serializedVersion: 2
-        x: 568
-        y: 5
-        width: 112
-        height: 107
+        x: 363
+        y: 259
+        width: 105
+        height: 111
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -157,8 +165,120 @@ TextureImporter:
       name: greenBody_spritesheet_5
       rect:
         serializedVersion: 2
-        x: 724
-        y: 5
+        x: 505
+        y: 260
+        width: 120
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: greenBody_spritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 658
+        y: 260
+        width: 103
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: greenBody_spritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 795
+        y: 264
+        width: 87
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: greenBody_spritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 86
+        width: 87
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: greenBody_spritesheet_9
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 83
+        width: 103
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: greenBody_spritesheet_10
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 84
+        width: 120
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: greenBody_spritesheet_11
+      rect:
+        serializedVersion: 2
+        x: 495
+        y: 80
+        width: 105
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: greenBody_spritesheet_12
+      rect:
+        serializedVersion: 2
+        x: 637
+        y: 83
+        width: 112
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: greenBody_spritesheet_13
+      rect:
+        serializedVersion: 2
+        x: 793
+        y: 83
         width: 116
         height: 107
       alignment: 0

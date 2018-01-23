@@ -26,7 +26,20 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate() {}
+    void FixedUpdate() {
+		if (Input.GetKey(KeyCode.RightArrow))
+        {
+            changeState(WALK_RIGHT);
+        }
+        else if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            changeState(WALK_LEFT);
+        }
+        else
+        {
+            changeState(IDLE);
+        }
+	}
 	
 	public void assignAnimators(Animator pHead, Animator pBody, Animator pLegs) {
 		head = pHead;

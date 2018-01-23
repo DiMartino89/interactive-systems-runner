@@ -41,9 +41,9 @@ public class Player : MonoBehaviour {
 	GameObject clone;
 	Behaviour halo;
 	
-	void Awake() {
+	/*void Awake() {
 		DontDestroyOnLoad(this);
-	}
+	}*/
 	
 	// Use this for initialization
 	void Start () {
@@ -73,11 +73,6 @@ public class Player : MonoBehaviour {
 			if(Input.GetKey(KeyCode.RightArrow) || (Input.GetKey(KeyCode.D))) {
 				transform.Translate(Vector3.right * speed * Time.fixedDeltaTime);
 				GetComponent<PlayerController>().changeState(1);
-				if(GameObject.Find("editedLook(Clone)").transform.localScale.x < 0) {
-					Vector3 scale = GameObject.Find("editedLook(Clone)").transform.localScale;
-					scale.x *= -1;
-					GameObject.Find("editedLook(Clone)").transform.localScale = scale;
-				}
 			}
 			
 			if(Input.GetKeyUp(KeyCode.RightArrow) || (Input.GetKeyUp(KeyCode.D))) {
@@ -87,11 +82,6 @@ public class Player : MonoBehaviour {
 			if(Input.GetKey(KeyCode.LeftArrow) || (Input.GetKey(KeyCode.A))) {
 				transform.Translate(Vector3.left * speed * Time.fixedDeltaTime);
 				GetComponent<PlayerController>().changeState(2);
-				if(GameObject.Find("editedLook(Clone)").transform.localScale.x > 0) {
-					Vector3 scale = GameObject.Find("editedLook(Clone)").transform.localScale;
-					scale.x *= -1;
-					GameObject.Find("editedLook(Clone)").transform.localScale = scale;
-				}
 			}
 			
 			if(Input.GetKey(KeyCode.LeftArrow) || (Input.GetKey(KeyCode.A))) {

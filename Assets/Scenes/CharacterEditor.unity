@@ -1251,14 +1251,14 @@ MonoBehaviour:
   lowerBodyField: {fileID: 1020360249}
   player: {fileID: 487228594}
   headSprites:
-  - {fileID: 21300000, guid: 8986039a109753941bbdd313c1eac35a, type: 3}
-  - {fileID: 21300000, guid: a41fd93c12f142847bcbe1d64d54bd67, type: 3}
+  - {fileID: 21300000, guid: 20bebf36e8a155b4fa315b2c63196c40, type: 3}
+  - {fileID: 21300000, guid: 31d62af1a7a37c24aa9f7ab8e6a65f17, type: 3}
   upperBodySprites:
-  - {fileID: 21300000, guid: ac03cd548824f1a4ba7db0efca4ffabc, type: 3}
-  - {fileID: 21300000, guid: bbe93dd3cfc940141af687c55b45f677, type: 3}
+  - {fileID: 21300000, guid: 2398ca27dfeb17d43b87ab2c3efe9fcb, type: 3}
+  - {fileID: 21300000, guid: f07663f0b60de824880fda947d1ad510, type: 3}
   lowerBodySprites:
-  - {fileID: 21300000, guid: 76fa4bd3b4b3b8243b0a50192e407e9e, type: 3}
-  - {fileID: 21300000, guid: df34b87225148f2489fd9998a177523e, type: 3}
+  - {fileID: 21300000, guid: f460ab582dfa9fb4cb2c08d0774b96a3, type: 3}
+  - {fileID: 21300000, guid: c8c9d6b43b7d68d439dbfd107d588bdd, type: 3}
   animators:
   - {fileID: 9100000, guid: c85cbccdc74e585438c20976c71ddf42, type: 2}
   - {fileID: 9100000, guid: 09d99a1cf2cd097409addf0b1e3f4ecf, type: 2}

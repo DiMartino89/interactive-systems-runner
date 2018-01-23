@@ -5,7 +5,7 @@ using UnityEngine;
 public class LevelGeneration : MonoBehaviour {
 
 	public GameObject player;
-	public GameObject standardLook;
+	GameObject standardLook;
 	GameObject newLook;
 	
 	public GameObject ground;
@@ -43,7 +43,7 @@ public class LevelGeneration : MonoBehaviour {
 	void Start () {
 		//Instantiate PlayerLook
 		try{
-			newLook = Resources.Load("editedAppearance/editedLook") as GameObject;
+			newLook = Resources.Load("EditedAppearance/editedLook") as GameObject;
 		}            
 		catch(UnityException e){            
 			Debug.Log(e);
@@ -56,6 +56,7 @@ public class LevelGeneration : MonoBehaviour {
 			Animator legs = eLook.transform.Find("UpperBody").transform.Find("LowerBody").GetComponent<Animator>();
 			player.GetComponent<PlayerController>().assignAnimators(head, body, legs);
 		} else {
+			standardLook = Resources.Load("StandardAppearance/standardLook") as GameObject;
 			GameObject sLook = Instantiate(standardLook, new Vector2(0,1.3f), Quaternion.identity) as GameObject;
 			sLook.transform.SetParent(player.transform);
 			Animator head = sLook.GetComponent<Animator>();
@@ -109,6 +110,10 @@ public class LevelGeneration : MonoBehaviour {
 							Instantiate(fallDownCatch, new Vector2(blockNum, blockHeight - 10), Quaternion.identity);
 							blockNum++;
 						}
+						if(plat == (plattforms - 1) && tiles == (platSize - 1)) {
+							Debug.Log("Finish");
+							Instantiate(finish, new Vector2(blockNum, blockHeight + 1.3f), Quaternion.identity);
+						}
 					}
 				} else {
 				
@@ -149,6 +154,7 @@ public class LevelGeneration : MonoBehaviour {
 							nextCheckpoint += (plattforms / amountCheckpoints);
 						}
 						if(plat == (plattforms - 1) && tiles == (platSize - 1)) {
+							Debug.Log("Finish");
 							Instantiate(finish, new Vector2(blockNum, blockHeight + 1.3f), Quaternion.identity);
 						}
 						
