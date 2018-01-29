@@ -1,0 +1,105 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1761277683153994}
+  m_IsPrefabParent: 1
+--- !u!1 &1761277683153994
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4917556010603496}
+  - component: {fileID: 114126998929875642}
+  - component: {fileID: 114075386870558576}
+  - component: {fileID: 114695520091374378}
+  m_Layer: 0
+  m_Name: LevelGeneration
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4917556010603496
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1761277683153994}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114075386870558576
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1761277683153994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d05ef0b60785ff40acee5c69437ceb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyRolling: {fileID: 1405636924220860, guid: 4a6733a3806c82b43b37ec4d3656a9c3,
+    type: 2}
+  enemyJumping: {fileID: 1904959388742806, guid: a627961f2e0c11146a1cebe09346da38,
+    type: 2}
+  enemyFollowing: {fileID: 1631927579365174, guid: fd48a8437e30e1945ac3461539c752e0,
+    type: 2}
+  enemyShooting: {fileID: 1031102307727810, guid: e1fcd7346d1ed174cb1151d17b411290,
+    type: 2}
+--- !u!114 &114126998929875642
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1761277683153994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 593a0e61e97671b408c39ce6a6ae999f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ground: {fileID: 1155399466366090, guid: 53c8e7d2069400849b0cd685aad4e588, type: 2}
+  bridge: {fileID: 1022712622322310, guid: 62c3f5f495dbb714d90171eddc36e36b, type: 2}
+  gap: {fileID: 1318698628749612, guid: a695fd68c53d80547a55def6c30ac238, type: 2}
+  finish: {fileID: 1141685470678514, guid: 17962a5d63c10d7448afd20cd8d7808e, type: 2}
+  checkpoint: {fileID: 1749867284789920, guid: 98c45bca7a4c195459f788e0c9b233a2, type: 2}
+  fallDownCatch: {fileID: 1125128555878186, guid: b530d8a209fd0b84b952bb7a8106b9e8,
+    type: 2}
+  minGroundSize: 1
+  maxGroundSize: 10
+  maxHazardSize: 4
+  maxHeight: 3
+  maxDrop: -3
+  plattforms: 100
+  hazardChance: 0.5
+  bridgeChance: 0.3
+  difficulty: 2
+--- !u!114 &114695520091374378
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1761277683153994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a51283aae9ad3949adf722911a6ce2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemAmmo: {fileID: 1103423086697548, guid: 78bf7489dd4ee4d448615d2d81901a1a, type: 2}
+  itemJump: {fileID: 1562525311325024, guid: d4c6bbac96c4f014a83e8fcab3f6168c, type: 2}
+  itemInvulnerability: {fileID: 1257287871187120, guid: 0c6855b8e446b3a4d985f17c6961aa10,
+    type: 2}
