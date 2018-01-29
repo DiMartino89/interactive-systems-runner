@@ -210,6 +210,7 @@ public class Player : MonoBehaviour {
 			isFinished = true;
 			rend.enabled = false;
 			Physics2D.IgnoreLayerCollision(8,9, false);
+			backToMenu.gameObject.SetActive(true);
 		}
 	}
 	
