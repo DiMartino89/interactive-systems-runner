@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using System.IO;
 using System.Collections;
 using System.Collections.Generic;
@@ -155,15 +157,21 @@ public class SpriteManager : MonoBehaviour
 		//Components for PlayerController
 		//whole Look/Head
 		Transform pLook = player.transform.Find("editedLook");
+		#if UNITY_EDITOR
 		Object prefab1 = EditorUtility.CreateEmptyPrefab("Assets/Resources/editedAppearance/" + pLook.gameObject.name + ".prefab");
 		PrefabUtility.ReplacePrefab(pLook.gameObject, prefab1, ReplacePrefabOptions.ConnectToPrefab);
+		#endif
 		//UpperBody
 		Transform upperBody = pLook.Find("UpperBody");
+		#if UNITY_EDITOR
 		Object prefab2 = EditorUtility.CreateEmptyPrefab("Assets/Resources/editedAppearance/" + upperBody.gameObject.name + ".prefab");
 		PrefabUtility.ReplacePrefab(upperBody.gameObject, prefab2, ReplacePrefabOptions.ConnectToPrefab);
+		#endif
 		//LowerBody
 		Transform lowerBody = pLook.Find("UpperBody").transform.Find("LowerBody");
+		#if UNITY_EDITOR
 		Object prefab3 = EditorUtility.CreateEmptyPrefab("Assets/Resources/editedAppearance/" + lowerBody.gameObject.name + ".prefab");
 		PrefabUtility.ReplacePrefab(lowerBody.gameObject, prefab3, ReplacePrefabOptions.ConnectToPrefab);
+		#endif
     }
 }

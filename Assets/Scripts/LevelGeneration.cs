@@ -87,7 +87,7 @@ public class LevelGeneration : MonoBehaviour {
 				}
 			}
 			
-			if(isHazard && plat != (plattforms)) {
+			if(isHazard && plat != (plattforms) && plat != (plattforms - 1)) {
 				int hazardSize = Mathf.RoundToInt(Random.Range(1, maxHazardSize));
 				for(int hazard = 0; hazard < hazardSize; hazard ++) {
 					Instantiate(fallDownCatch, new Vector2(blockNum + hazard, blockHeight - 10), Quaternion.identity);

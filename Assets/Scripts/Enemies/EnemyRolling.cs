@@ -26,6 +26,8 @@ public class EnemyRolling : MonoBehaviour
 		if (Random.value < chaserChance) {
 			isChaser = true;
 		}
+		
+		Physics2D.IgnoreLayerCollision(9,9, true);
 	}
 
 	void FixedUpdate () {
