@@ -16,8 +16,10 @@ public class PlayerController : MonoBehaviour
     const int IDLE = 0;
     const int WALK_RIGHT = 1;
     const int WALK_LEFT = 2;
-    private int _currentAnimationState = IDLE;
-    // Use this for initialization
+    
+	private int _currentAnimationState = IDLE;
+    
+	// Use this for initialization
     void Start()
     {
         head.GetComponent<Animator>();
@@ -27,6 +29,8 @@ public class PlayerController : MonoBehaviour
 
     // Update is called once per frame
     void FixedUpdate() {
+		
+		// Player-Controls change animation-states
 		if (Input.GetKey(KeyCode.RightArrow))
         {
             changeState(WALK_RIGHT);
@@ -41,12 +45,14 @@ public class PlayerController : MonoBehaviour
         }
 	}
 	
+	// Assign the single-animators
 	public void assignAnimators(Animator pHead, Animator pBody, Animator pLegs) {
 		head = pHead;
 		chest = pBody;
 		legs = pLegs;
 	}
 	
+	// Function to change animation-state
 	public void changeState(int state)
     {
         if (_currentAnimationState == state)

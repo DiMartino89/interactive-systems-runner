@@ -21,7 +21,7 @@ public class EnemyRunning : MonoBehaviour {
 		
 	}
 	
-	// Update is called once per frame
+	// FixedUpdate is called once per frame
 	void FixedUpdate () {
 		// Ignore Collision between Enemy (Layer 8) and Levelboundries (Layer 9)
 		Physics2D.IgnoreLayerCollision(9, 9);

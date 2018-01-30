@@ -17,6 +17,7 @@ public class Cam : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		// Cam-center is +3 on x-axis from player
 		camPos = player.transform.position.x + 3.0f;
 		mainCam.transform.position = new Vector3(Mathf.Clamp(camPos, min, max), mainCam.transform.position.y, mainCam.transform.position.z);
 	}

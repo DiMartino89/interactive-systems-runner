@@ -9,6 +9,7 @@ public class ItemPlacement : MonoBehaviour {
 	public void PlaceItems(Vector2 coords) {
 		float rand = Random.value;
 		
+		// If random-value equals to one of the cases, place the appropriated Item +1 on y-axis to the current tile
 		if(rand < 0.3f) {
 			Instantiate(itemAmmo, new Vector2(coords.x, coords.y + 1), Quaternion.identity);
 		}
