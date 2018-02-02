@@ -65,7 +65,7 @@ public class Player : MonoBehaviour {
 		currInvulnerability.text = "Inv: " + Math.Round(invulnerability, 1) + "s";
 		currJumping.text = "Jump: " + Math.Round(timeReinforcedJump, 1);
 		currDifficulty.text = "Diff: " + LevelGeneration.difficulty;
-		GetComponent<PlayerController>().changeState(0);
+		GetComponent<AnimationController>().ChangeState(0);
 	}
 	
 	// Update is called once per frame
@@ -76,23 +76,23 @@ public class Player : MonoBehaviour {
 			// walk-right with animation
 			if(Input.GetKey(KeyCode.RightArrow) || (Input.GetKey(KeyCode.D))) {
 				transform.Translate(Vector3.right * speed * Time.fixedDeltaTime);
-				GetComponent<PlayerController>().changeState(1);
+				GetComponent<AnimationController>().ChangeState(1);
 			}
 			
 			// To stop walk-right animation
 			if(Input.GetKeyUp(KeyCode.RightArrow) || (Input.GetKeyUp(KeyCode.D))) {
-				GetComponent<PlayerController>().changeState(0);
+				GetComponent<AnimationController>().ChangeState(0);
 			}
 			
 			// walk-left with animation
 			if(Input.GetKey(KeyCode.LeftArrow) || (Input.GetKey(KeyCode.A))) {
 				transform.Translate(Vector3.left * speed * Time.fixedDeltaTime);
-				GetComponent<PlayerController>().changeState(2);
+				GetComponent<AnimationController>().ChangeState(2);
 			}
 			
 			// To stop walk-left animation
 			if(Input.GetKey(KeyCode.LeftArrow) || (Input.GetKey(KeyCode.A))) {
-				GetComponent<PlayerController>().changeState(0);
+				GetComponent<AnimationController>().ChangeState(0);
 			}
 			
 			// Jump

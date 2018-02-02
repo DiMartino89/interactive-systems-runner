@@ -55,7 +55,7 @@ public class LevelGeneration : MonoBehaviour {
 			Animator head = eLook.GetComponent<Animator>();
 			Animator body = eLook.transform.Find("UpperBody").GetComponent<Animator>();
 			Animator legs = eLook.transform.Find("UpperBody").transform.Find("LowerBody").GetComponent<Animator>();
-			player.GetComponent<PlayerController>().assignAnimators(head, body, legs);
+			player.GetComponent<AnimationController>().AssignAnimators(head, body, legs);
 		} else {
 			standardLook = Resources.Load("StandardAppearance/standardLook") as GameObject;
 			GameObject sLook = Instantiate(standardLook, new Vector2(0,1.3f), Quaternion.identity) as GameObject;
@@ -63,7 +63,7 @@ public class LevelGeneration : MonoBehaviour {
 			Animator head = sLook.GetComponent<Animator>();
 			Animator body = sLook.transform.Find("UpperBody").GetComponent<Animator>();
 			Animator legs = sLook.transform.Find("UpperBody").transform.Find("LowerBody").GetComponent<Animator>();
-			player.GetComponent<PlayerController>().assignAnimators(head, body, legs);
+			player.GetComponent<AnimationController>().AssignAnimators(head, body, legs);
 		}
 		
 		// Instantiate first tile for the player

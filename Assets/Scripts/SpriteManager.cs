@@ -14,12 +14,15 @@ public class SpriteManager : MonoBehaviour
     public GameObject lowerBodyField;
     public GameObject player;
 
+    /** Array of all the Sprites */
     public Sprite[] headSprites;
     public Sprite[] upperBodySprites;
     public Sprite[] lowerBodySprites;
 
+    /** Array which will contain all the RuntimeAnimatorController for each Sprite */
     public RuntimeAnimatorController[] animators;
 
+    /** Variables to track the index of the current visible Element */
     private int headIndex = 0;
     private int bodyIndex = 0;
     private int legsIndex = 0;
@@ -31,88 +34,76 @@ public class SpriteManager : MonoBehaviour
         lowerBodyField.GetComponent<Image>().sprite = lowerBodySprites[legsIndex];
     }
 
+    /** Extract redundant Code into a Method */
+    private void IteratorDown(ref int index, Sprite[] sprites)
+    {
+        if (index == 0)
+        {
+            index = sprites.Length - 1;
+        }
+        else
+        {
+            index--;
+        }
+    }
+
+    /** Extract redundant Code into a Method */
+    private void IteratorUp(ref int index, Sprite[] sprites)
+    {
+        if (index == sprites.Length - 1)
+        {
+            index = 0;
+        }
+        else
+        {
+            index++;
+        }
+    }
+
+    /** Method to Iterator over the Sprites in the HeadSprites array*/
     public void IterateOverHeads(Button button)
     {
         if (button.name == "HeadLeft")
         {
-            if (headIndex == 0)
-            {
-                headIndex = headSprites.Length - 1;
-            }
-            else
-            {
-                headIndex--;
-            }
+            IteratorDown(ref headIndex, headSprites);
+
         }
 
         if (button.name == "HeadRight")
         {
-            if (headIndex == headSprites.Length - 1)
-            {
-                headIndex = 0;
-            }
-            else
-            {
-                headIndex++;
-            }
+            IteratorUp(ref headIndex, headSprites);
         }
 
         headField.GetComponent<Image>().sprite = headSprites[headIndex];
     }
 
+    /** Method to Iterator over the Sprites in the UpperBodySprites array*/
     public void IterateOverChests(Button button)
     {
         if (button.name == "ChestLeft")
         {
-            if (bodyIndex == 0)
-            {
-                bodyIndex = upperBodySprites.Length - 1;
-            }
-            else
-            {
-                bodyIndex--;
-            }
+            IteratorDown(ref bodyIndex, upperBodySprites);
         }
 
         if (button.name == "ChestRight")
         {
-            if (bodyIndex == upperBodySprites.Length - 1)
-            {
-                bodyIndex = 0;
-            }
-            else
-            {
-                bodyIndex++;
-            }
+            IteratorUp(ref bodyIndex, upperBodySprites);
         }
 
         upperBodyField.GetComponent<Image>().sprite = upperBodySprites[bodyIndex];
     }
 
+    /** Method to Iterator over the Sprites in the LowerBodySprites array*/
     public void IterateOverLegs(Button button)
     {
         if (button.name == "LegsLeft")
         {
-            if (legsIndex == 0)
-            {
-                legsIndex = lowerBodySprites.Length - 1;
-            }
-            else
-            {
-                legsIndex--;
-            }
+            IteratorDown(ref legsIndex, lowerBodySprites);
         }
 
         if (button.name == "LegsRight")
         {
-            if (legsIndex == lowerBodySprites.Length - 1)
-            {
-                legsIndex = 0;
-            }
-            else
-            {
-                legsIndex++;
-            }
+            IteratorUp(ref legsIndex, lowerBodySprites);
         }
 
         lowerBodyField.GetComponent<Image>().sprite = lowerBodySprites[legsIndex];
@@ -151,27 +142,27 @@ public class SpriteManager : MonoBehaviour
                 legs.GetComponent<Animator>().runtimeAnimatorController = animators[i];
             }
         }
-		
-		// Components for PlayerController
-		
-		// Use "#if Unity_Editor" for the Build as Editor-References are not accessible in Build
-		// Whole Look/Head
-		Transform pLook = player.transform.Find("editedLook");
-		#if UNITY_EDITOR
-		Object prefab1 = EditorUtility.CreateEmptyPrefab("Assets/Resources/editedAppearance/" + pLook.gameObject.name + ".prefab");
-		PrefabUtility.ReplacePrefab(pLook.gameObject, prefab1, ReplacePrefabOptions.ConnectToPrefab);
-		#endif
-		// UpperBody
-		Transform upperBody = pLook.Find("UpperBody");
-		#if UNITY_EDITOR
-		Object prefab2 = EditorUtility.CreateEmptyPrefab("Assets/Resources/editedAppearance/" + upperBody.gameObject.name + ".prefab");
-		PrefabUtility.ReplacePrefab(upperBody.gameObject, prefab2, ReplacePrefabOptions.ConnectToPrefab);
-		#endif
-		// LowerBody
-		Transform lowerBody = pLook.Find("UpperBody").transform.Find("LowerBody");
-		#if UNITY_EDITOR
-		Object prefab3 = EditorUtility.CreateEmptyPrefab("Assets/Resources/editedAppearance/" + lowerBody.gameObject.name + ".prefab");
-		PrefabUtility.ReplacePrefab(lowerBody.gameObject, prefab3, ReplacePrefabOptions.ConnectToPrefab);
-		#endif
+
+        // Components for PlayerController
+
+        // Use "#if Unity_Editor" for the Build as Editor-References are not accessible in Build
+        // Whole Look/Head
+        Transform pLook = player.transform.Find("editedLook");
+#if UNITY_EDITOR
+        Object prefab1 = EditorUtility.CreateEmptyPrefab("Assets/Resources/editedAppearance/" + pLook.gameObject.name + ".prefab");
+        PrefabUtility.ReplacePrefab(pLook.gameObject, prefab1, ReplacePrefabOptions.ConnectToPrefab);
+#endif
+        // UpperBody
+        Transform upperBody = pLook.Find("UpperBody");
+#if UNITY_EDITOR
+        Object prefab2 = EditorUtility.CreateEmptyPrefab("Assets/Resources/editedAppearance/" + upperBody.gameObject.name + ".prefab");
+        PrefabUtility.ReplacePrefab(upperBody.gameObject, prefab2, ReplacePrefabOptions.ConnectToPrefab);
+#endif
+        // LowerBody
+        Transform lowerBody = pLook.Find("UpperBody").transform.Find("LowerBody");
+#if UNITY_EDITOR
+        Object prefab3 = EditorUtility.CreateEmptyPrefab("Assets/Resources/editedAppearance/" + lowerBody.gameObject.name + ".prefab");
+        PrefabUtility.ReplacePrefab(lowerBody.gameObject, prefab3, ReplacePrefabOptions.ConnectToPrefab);
+#endif
     }
 }

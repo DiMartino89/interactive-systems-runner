@@ -2,17 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class AnimationController : MonoBehaviour
 {
-
+    /** Variables for the Animator Components*/
     public Animator head;
     public Animator chest;
     public Animator legs;
 	
 	public GameObject player;
 
-    public float walkSpeed = 1;
-
+    /** State varialbes for the Aninmations, Would be cleaner to have an Enum (Couldn't get it to Work with it)*/
     const int IDLE = 0;
     const int WALK_RIGHT = 1;
     const int WALK_LEFT = 2;
@@ -31,29 +30,29 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate() {
 		
 		// Player-Controls change animation-states
-		if (Input.GetKey(KeyCode.RightArrow))
+		if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
         {
-            changeState(WALK_RIGHT);
+            ChangeState(WALK_RIGHT);
         }
-        else if (Input.GetKey(KeyCode.LeftArrow))
+        else if (Input.GetKey(KeyCode.LeftArrow)|| Input.GetKey(KeyCode.A))
         {
-            changeState(WALK_LEFT);
+            ChangeState(WALK_LEFT);
         }
         else
         {
-            changeState(IDLE);
+            ChangeState(IDLE);
         }
 	}
 	
 	// Assign the single-animators
-	public void assignAnimators(Animator pHead, Animator pBody, Animator pLegs) {
+	public void AssignAnimators(Animator pHead, Animator pBody, Animator pLegs) {
 		head = pHead;
 		chest = pBody;
 		legs = pLegs;
 	}
 	
-	// Function to change animation-state
-	public void changeState(int state)
+	// Method to change animation-states
+	public void ChangeState(int state)
     {
         if (_currentAnimationState == state)
             return;

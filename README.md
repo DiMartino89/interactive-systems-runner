@@ -16,10 +16,13 @@
 		
 * Charakter-Editor
 	* Gesteuert über Sprite-Manager
-	* 3 austauschbare Elemente - Head, Chest, Legs
-	
-**Screens**
+		 * Beinhaltet 3 GameObject fields fuer Kopf, Oberkoerper und Unterkoerper die einen Canvas Renderer
+		 * Managed 3 Sprite array welches alle Sprites fuer Kopf Ober- und Unterkoeper beihnalten die im Spiel verwendet werden
+		 * Alle AnimationController die Anhand von den Sprites generiert wurden um eine Verknuepfung zu ermoeglichen
+	* Bedingung zur Funktion:
+		* Sprite und AnimationController sollte gleich benannt sein
 
+**Screens**
 * Menu
 * Editor
 * Settings
@@ -32,3 +35,4 @@
 * Level muss immer machbar sein
 * Angemessene Abstimmung der physikalischen Kräfte untereinander
 * Erstellung der Spritesheets
+* Spieler muss zur Runtime mit den neusten Konfigurationen instanziert werden
