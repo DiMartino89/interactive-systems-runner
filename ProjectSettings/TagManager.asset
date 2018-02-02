@@ -17,6 +17,9 @@ TagManager:
   - Lifes
   - EnemyNoKill
   - LevelGen
+  - HeadField
+  - LegsField
+  - ChestField
   layers:
   - Default
   - TransparentFX
@@ -53,4 +56,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Before
+    uniqueID: 3278256723
     locked: 0

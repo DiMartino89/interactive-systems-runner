@@ -9,6 +9,7 @@ public class EnemyPlacement : MonoBehaviour {
 	public void PlaceEnemies(Vector2 coords) {
 		float rand = Random.value;
 		
+		// If random-value equals to one of the cases, place the appropriated Enemy +1 on y-axis to the current tile
 		if(rand <= 0.3f) {
 			Instantiate(enemyRolling, new Vector2(coords.x, coords.y + 1), Quaternion.identity);
 		}

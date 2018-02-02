@@ -25,36 +25,36 @@ public class EnemyJumping : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		//get all the components needed
+		
+		// get all the components needed
 		mainBody = GetComponentInParent<Rigidbody2D> ();
 		rend = GetComponentInParent<SpriteRenderer> ();
 		anim = GetComponentInParent<Animator> ();
 		player = GameObject.Find("Player");
 		
+		// ignore collision with other enemies
 		Physics2D.IgnoreLayerCollision(9,9, true);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		//if debug mode is enabled, ignore the jumptimer and jump when Z is pressed
+		
+		// only debug mode
 		if (debugMode == true) {
 			if (Input.GetKeyDown (KeyCode.Z)) {
 				hasJumped = true;
 			}
 		} else {
-			//if slime is not dead allow everything to run
 			if (isDead == false) {
-				//timer that counts up for jump
+				// timer that counts up for next jump
 				jumpTimer += Time.deltaTime;
 
-				//make the AI jump when the timer reaches max
 				if (jumpTimer >= jumpTime) {
 					hasJumped = true;
 				}
 			}
 		}
 
-		//run the jump function
 		if (hasJumped == true) {
 			Jump ();
 		}
@@ -62,48 +62,42 @@ public class EnemyJumping : MonoBehaviour {
 
 	void Jump(){
 		if (hasJumped == true) {
-			//find the direction of the player
+			
+			// direction and distance of he player
 			Vector2 direction = transform.position - player.transform.position;
-			//find the distance of the player
 			float distance = Vector2.Distance (transform.position, player.transform.position);
 
-			//timer of the about to jump animation before the actual jump
 			speedTimer += Time.deltaTime;
 
+			// jump up
 			if (speedTimer >= jumpSpeed) {
-				//jump up
 				mainBody.AddForce (Vector2.up * jumpDist);
 
-				//if the player is within range, check to see what direction he is then jump towards the player
+				// If the player is within the range, jump towards the player
 				if (direction.x > 0 && distance < playerDetectRange) {
-					//jump left at 1/3 the force of the main jump
+					// jump left with 30% of the jump-force but don't flip
 					mainBody.AddForce (Vector2.left * (jumpDist / 3));
-					//do not flip the image on the X
 					rend.flipX = false;
 
 				} else if (direction.x < 0 && distance < playerDetectRange) {
-					//jump right at 1/3 the force of the main jump
+					// jump right with 30% of the jump-force and flip
 					mainBody.AddForce (Vector2.right * (jumpDist / 3));
-					//flip the image on the x
 					rend.flipX = true;
 
-					//If the player is not within range
+				// If the player is not within range jump random 50/50
 				} else {
-					//get a random value and jump in a random direction 50/50
 					if (Random.value > .50f) {
-						//jump right at 1/3 the force of the main jump
+						// jump right
 						mainBody.AddForce (Vector2.right * (jumpDist / 3));
-						//flip the image on the x
 						rend.flipX = true;
 					} else {
-						//jump left at 1/3 the force of the main jump
+						// jump left
 						mainBody.AddForce (Vector2.left * (jumpDist / 3));
-						//do not flip the image on the X
 						rend.flipX = false;
 					}
 				}
 
-				//reset the animation, speedTimer, jumpTimer and hasJumped
+				// reset params
 				speedTimer = 0;
 				jumpTimer = 0;
 				hasJumped = false;

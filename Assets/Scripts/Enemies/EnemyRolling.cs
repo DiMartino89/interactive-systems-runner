@@ -3,10 +3,7 @@ using System.Collections;
  
 public class EnemyRolling : MonoBehaviour
 {
-
-	private Rigidbody2D mainBody;
 	public Transform leftEdge, rightEdge;
-	//private Animator anim;
 
 	public float moveSpeed = 0.02f;
 	public float chaseSpeed = 0.10f;
@@ -14,10 +11,10 @@ public class EnemyRolling : MonoBehaviour
 	[Range (0.0f, 1f)]
 	public float chaserChance = 0.5f;
 	public float chaserDistance = 3;
+	
+	private Rigidbody2D mainBody;
 	private float move, timer;
-
 	private bool isStopped, isRight, isChasing, isChaser;
-
 	private int maskLayer = 12;
 
 	// Use this for initialization
@@ -26,8 +23,11 @@ public class EnemyRolling : MonoBehaviour
 		if (Random.value < chaserChance) {
 			isChaser = true;
 		}
+		
+		Physics2D.IgnoreLayerCollision(9,9, true);
 	}
 
+	// Update is called once per frame
 	void FixedUpdate () {
 
 		float distance = Vector2.Distance (transform.position, GameObject.Find ("Player").transform.position);
@@ -35,6 +35,7 @@ public class EnemyRolling : MonoBehaviour
 
 		mainBody.MovePosition(mainBody.position + Vector2.left * move);
 
+		// if detects the player = chaser
 		if (isChaser == true && distance < chaserDistance) {
 			if (direction.x > 0) {
 				isRight = false;
@@ -43,6 +44,7 @@ public class EnemyRolling : MonoBehaviour
 				isRight = true;
 				move = -chaseSpeed;
 			}
+		// if not = normal left to right moving
 		} else {
 			if (isStopped == true) {
 				move = 0;
@@ -60,16 +62,16 @@ public class EnemyRolling : MonoBehaviour
 			}
 		}
 
-		//edge detection raycasts
+		// edge detection raycasts
 		RaycastHit2D hitLeft = Physics2D.Raycast(leftEdge.position, Vector2.down, 0.5f, 1 << maskLayer);
 		RaycastHit2D hitRight = Physics2D.Raycast(rightEdge.position, Vector2.down, 0.5f, 1 << maskLayer);
 
-		//if is going left check if the raycast no longer detects the ground
+		// if is going left check if the raycast no longer detects the ground
 		if (isRight == false) {
 			if (hitLeft.collider == null) {
 				isStopped = true;
 				move = 0;
-				//if saw is a chaser, do not change the direction when chasing
+				// if saw is a chaser, do not change the direction when chasing
 				if (isChasing == false) {
 					isRight = true;
 				}
@@ -89,6 +91,11 @@ public class EnemyRolling : MonoBehaviour
 				}
 			}
 		}
-
+	}
+	
+	void OnTriggerEnter2D(Collider2D col){
+		if (col.tag == "PlayerBullet") {
+			gameObject.SetActive(false);
+		}
 	}
 }
