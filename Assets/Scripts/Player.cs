@@ -47,6 +47,7 @@ public class Player : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
+		// Initialize all player-properties
 		player = GetComponent<Rigidbody2D>();
 		rend = GetComponent<SpriteRenderer>();
 		rendHead = transform.Find("editedLook(Clone)").GetComponent<SpriteRenderer>();
@@ -64,30 +65,37 @@ public class Player : MonoBehaviour {
 		currInvulnerability.text = "Inv: " + Math.Round(invulnerability, 1) + "s";
 		currJumping.text = "Jump: " + Math.Round(timeReinforcedJump, 1);
 		currDifficulty.text = "Diff: " + LevelGeneration.difficulty;
-		GetComponent<PlayerController>().changeState(0);
+		GetComponent<AnimationController>().ChangeState(0);
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
 		if(isDead == false && isFinished == false) {
+			// Player-Controls
+			
+			// walk-right with animation
 			if(Input.GetKey(KeyCode.RightArrow) || (Input.GetKey(KeyCode.D))) {
 				transform.Translate(Vector3.right * speed * Time.fixedDeltaTime);
-				GetComponent<PlayerController>().changeState(1);
+				GetComponent<AnimationController>().ChangeState(1);
 			}
 			
+			// To stop walk-right animation
 			if(Input.GetKeyUp(KeyCode.RightArrow) || (Input.GetKeyUp(KeyCode.D))) {
-				GetComponent<PlayerController>().changeState(0);
+				GetComponent<AnimationController>().ChangeState(0);
 			}
 			
+			// walk-left with animation
 			if(Input.GetKey(KeyCode.LeftArrow) || (Input.GetKey(KeyCode.A))) {
 				transform.Translate(Vector3.left * speed * Time.fixedDeltaTime);
-				GetComponent<PlayerController>().changeState(2);
+				GetComponent<AnimationController>().ChangeState(2);
 			}
 			
+			// To stop walk-left animation
 			if(Input.GetKey(KeyCode.LeftArrow) || (Input.GetKey(KeyCode.A))) {
-				GetComponent<PlayerController>().changeState(0);
+				GetComponent<AnimationController>().ChangeState(0);
 			}
 			
+			// Jump
 			if(Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) {
 				if(timeReinforcedJump < Time.time && grounded == true) {
 					player.velocity = new Vector2(0, jumpHeight);
@@ -96,6 +104,7 @@ public class Player : MonoBehaviour {
 				}
 			}
 			
+			// Shooting
 			if(Input.GetKeyDown(KeyCode.Space)) {	
 				if(Time.time > nextFire && ammo > 0) {
 					nextFire = nextFire + fireRate;
@@ -110,6 +119,7 @@ public class Player : MonoBehaviour {
 				}
 			}
 			
+			// Flip player
 			float move = Input.GetAxis("Horizontal");
 			
 			if(move < 0) {
@@ -121,11 +131,13 @@ public class Player : MonoBehaviour {
 			flip();
 		}
 		
+		// Reset high-jump-time
 		if(timeReinforcedJump < Time.time) {
 			timeReinforcedJump = 0;
 			currJumping.text = "Jump: " + 0 + "s";
 		}
 		
+		// Reset invulnerability-time
 		if(invulnerability < Time.time) {
 			invulnerability = 0;
 			currInvulnerability.text = "Inv: " + 0 + "s";
@@ -133,6 +145,7 @@ public class Player : MonoBehaviour {
 			halo.enabled = false;
 		}
 		
+		// Respawn player after death
 		if(isDead == true && lifes > 0 && timeToRespawn < Time.time) {
 			transform.position = lastCheckpoint;
 			rend.enabled = true;
@@ -144,12 +157,14 @@ public class Player : MonoBehaviour {
 			isTriggered = false;
 		}
 		
+		// Set GameOver after third death
 		if(lifes == 0) {	
 			Physics2D.IgnoreLayerCollision(8,9, true);
 			gameOver.SetActive(true);
 			backToMenu.gameObject.SetActive(true);
 		}
 		
+		// Update property-labels
 		currLifes.text = "♥ " + lifes;
 		currAmmo.text = "Ammo: " + ammo;
 		currStat.text = "Stat: " + playerStat;
@@ -164,7 +179,8 @@ public class Player : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D col) {
 		
 		grounded = true;
-
+		
+		// If player hits enemy bullets or killing-enemies = death
 		if(col.tag == "EnemyBullet" || col.tag == "Enemy") {
 			if(isTriggered == false) { 
 				lifes--;
@@ -183,11 +199,13 @@ public class Player : MonoBehaviour {
 			}
 		}
 		
+		// If player hits checkpoint, recognize this position
 		if(col.tag == "Checkpoint") {
 			lastCheckpoint = transform.position;
 			grounded = false;
 		}
 		
+		// If player hits FallDownCatch = death
 		if(col.tag == "FallDownCatch") {
 			if(isTriggered == false) { 
 				lifes--;
@@ -205,6 +223,7 @@ public class Player : MonoBehaviour {
 			}
 		}
 		
+		// If player hits finish, set Win
 		if (col.tag == "Finish") {			
 			winGame.SetActive(true);
 			isFinished = true;
@@ -214,14 +233,17 @@ public class Player : MonoBehaviour {
 		}
 	}
 	
+	// If player collider stays in contact with ground
 	void OnTriggerStay2D(Collider2D col) {
 		grounded = true;    
 	}
-
+	
+	// If player jumps
 	void OnTriggerExit2D(Collider2D col) {
 		grounded = false;
 	}
 	
+	// Fire-Function for player left and right
 	void fire() {
 		bulletPos = transform.position;
 		if(isFlipped == false) {
@@ -232,6 +254,7 @@ public class Player : MonoBehaviour {
 		clone = Instantiate(bullet, bulletPos, Quaternion.identity) as GameObject;
 	}
 	
+	// Flip the player-sprite
 	void flip() {
 		if(isFlipped == false) {
 			rend.flipX = false;
@@ -240,6 +263,7 @@ public class Player : MonoBehaviour {
 		}
 	}
 	
+	// Change the player-State when he hits an Item
 	public void ChangePlayerState(int state) {
 		playerStat = state;
 		if(playerStat == 1 && timeReinforcedJump == 0) {

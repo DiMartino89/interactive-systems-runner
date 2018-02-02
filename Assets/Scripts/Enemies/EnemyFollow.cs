@@ -18,6 +18,7 @@ public class EnemyFollow : MonoBehaviour {
 		rend = GetComponent<SpriteRenderer>();
 		lastPos = transform.position;
 		
+		// Avoid collision with other enemies
 		Physics2D.IgnoreLayerCollision(9,9, true);
 	}
 	
@@ -26,6 +27,7 @@ public class EnemyFollow : MonoBehaviour {
 		Physics2D.IgnoreLayerCollision(9, 9);
 		Physics2D.IgnoreLayerCollision(9, 10);
 		
+		// Follow the player with rotation when needed
 		transform.LookAt(target.position);
 		transform.Rotate(new Vector3(0,-90,0),Space.Self);
 		transform.Translate(new Vector3(speed * Time.deltaTime * 3.0f,0,0) );
@@ -33,6 +35,7 @@ public class EnemyFollow : MonoBehaviour {
 		Vector3 move = transform.position - lastPos;
 		lastPos = transform.position;
 		
+		// Flip Enemy
 		if(move.y < 0) {
 			isFlipped = true;
 		} else if(move.y > 0) {
@@ -50,6 +53,7 @@ public class EnemyFollow : MonoBehaviour {
 		}
 	}
 	
+	// Trigger-Function, if hit by player, deactivate the object
 	void OnTriggerEnter2D(Collider2D col){
 		if (col.tag == "PlayerBullet") {
 			gameObject.SetActive(false);

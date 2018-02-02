@@ -16,13 +16,17 @@ public class EnemyShooting : MonoBehaviour {
 	private Vector2 startPos;
 	private GameObject clone;
 	private AudioSource source;
-	 
+	
+	// Use this for initialization	
     void Start() {
 		startPos = transform.position;
 		source = GetComponent<AudioSource>();
+		
+		// ignore collision with other enemies
 		Physics2D.IgnoreLayerCollision(9,9, true);
     }
      
+	// FixedUpdate is called once per frame 
     void FixedUpdate() {
         if(Time.time > nextFire) {
 			nextFire = nextFire + fireRate;
