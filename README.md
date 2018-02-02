@@ -36,3 +36,12 @@
 * Angemessene Abstimmung der physikalischen Kräfte untereinander
 * Erstellung der Spritesheets
 * Spieler muss zur Runtime mit den neusten Konfigurationen instanziert werden
+
+## Technologie, Voraussetzungen und Aufsetzen des Games
+
+* Plattform: Unity 2017.2.0f3
+* Aufsetzen: 
+	* git clone https://github.com/DiMartino89/interactive-systems-runner.git
+	* Target-Branch = master (oder develop)
+	* Am besten die Menu-Scene aus dem Editor starten, von dort gelangt man dann an alle Features
+	* Anmerkung: Build war zwar möglich, jedoch wurden nicht alle Features wie gewünscht adapted, daher bitte den Editor nutzen
